@@ -84,4 +84,6 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 [MIT](LICENSE)
 
 ---
+## Live link 
+https://imagify-frontend-57j7.onrender.com/
 **Made with ❤️ for creativity!** 
