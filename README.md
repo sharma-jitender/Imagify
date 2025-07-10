@@ -25,11 +25,7 @@ Imagify is a full-stack AI-powered web application that allows users to generate
 
 ### 1. Clone the Repository
 ```sh
-<<<<<<< HEAD
-git clone https://github.com/sharma-jitender/Imagify.git
-=======
 git clone https://github.com/YOUR-USERNAME/Imagify.git
->>>>>>> 7d7df67 (Fix Tailwind setup and remove invalid vite plugin)
 cd Imagify
 ```
 
@@ -88,8 +84,4 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 [MIT](LICENSE)
 
 ---
-<<<<<<< HEAD
-**Made with ❤️ for creativity!**
-=======
 **Made with ❤️ for creativity!** 
->>>>>>> 7d7df67 (Fix Tailwind setup and remove invalid vite plugin)
