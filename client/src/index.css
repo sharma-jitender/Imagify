@@ -10,4 +10,5 @@
     font-weight: 300;
 }
 
-@tailwind utilities;
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
