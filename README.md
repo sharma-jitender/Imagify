@@ -1,41 +1,88 @@
 # Imagify
 
-Imagify is a full-stack AI-powered web application that allows users to generate stunning images from text prompts. Users can register, log in, generate images using AI, and purchase credits to continue using the service. The app features a modern UI, authentication, credit management, and payment integration (Razorpay).
+Imagify is a full-stack AI-powered web application that enables users to generate high-quality images from text prompts. The platform integrates AI image generation, secure authentication, credit-based access, and online payments to provide a seamless creative experience.
+
+Users can register, log in, generate AI-powered images, manage credits, and purchase additional credits through Razorpay.
 
 ## Features
-- ✨ Generate images from text prompts using AI
-- 🔒 User authentication (register/login/logout)
-- 💳 Credit system for image generation
-- 🛒 Purchase credits via Razorpay
-- 📈 Responsive and modern UI
-- 🗂️ User profile and credit balance display
+
+* AI-powered image generation from text prompts
+* Secure user authentication and authorization
+* Credit-based image generation system
+* Razorpay payment gateway integration for credit purchases
+* Responsive and modern user interface
+* User profile management with credit balance tracking
+* Real-time notifications for enhanced user experience
 
 ## Tech Stack
-- **Frontend:** React, Vite, Context API, Axios, Framer Motion, React Toastify
-- **Backend:** Node.js, Express, MongoDB, JWT, Razorpay API
-- **AI API:** ClipDrop (or similar text-to-image API)
+
+### Frontend
+
+* React.js
+* Vite
+* Context API
+* Axios
+* Framer Motion
+* React Toastify
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* JSON Web Token (JWT)
+* Razorpay API
+
+### AI Integration
+
+* ClipDrop API (Text-to-Image Generation)
+
+## Live Demo
+
+Deployed Application:
+https://imagify-frontend-57j7.onrender.com/
+
+## Project Structure
+
+```plaintext
+Imagify/
+│── client/      # React frontend
+│── server/      # Node.js backend
+```
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js & npm
-- MongoDB (local or cloud)
-- Razorpay account (for payments)
-- ClipDrop API key (or your chosen AI image API)
+
+Ensure the following are installed on your system:
+
+* Node.js
+* npm or yarn
+* MongoDB (local installation or cloud database)
+* Razorpay account for payment integration
+* ClipDrop API key (or an alternative AI image generation API)
+
+## Installation and Setup
 
 ### 1. Clone the Repository
-```sh
+
+```bash
 git clone https://github.com/YOUR-USERNAME/Imagify.git
 cd Imagify
 ```
 
-### 2. Setup the Backend
-```sh
+### 2. Backend Setup
+
+Navigate to the server directory:
+
+```bash
 cd server
 npm install
 ```
-Create a `.env` file in the `server/` directory with the following:
-```
+
+Create a `.env` file inside the `server/` directory and configure the following environment variables:
+
+```env
 PORT=4000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
@@ -43,47 +90,66 @@ CLIPDROP_API=your_clipdrop_api_key
 RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 ```
-Start the backend:
-```sh
+
+Start the backend server:
+
+```bash
 npm start
 ```
 
-### 3. Setup the Frontend
-```sh
+### 3. Frontend Setup
+
+Navigate to the client directory:
+
+```bash
 cd ../client
 npm install
 ```
-Create a `.env` file in the `client/` directory with:
-```
+
+Create a `.env` file inside the `client/` directory:
+
+```env
 VITE_BACKEND_URL=http://localhost:4000
 ```
-Start the frontend:
-```sh
+
+Start the frontend development server:
+
+```bash
 npm run dev
 ```
 
-### 4. Open in Browser
-Visit [http://localhost:5173](http://localhost:5173)
+### 4. Access the Application
+
+Open the application in your browser:
+
+```plaintext
+http://localhost:5173
+```
 
 ## Usage
-- Register or log in.
-- Enter a text prompt and generate images.
-- Purchase credits when you run out.
 
-## Folder Structure
-```
-Imagify/
-  client/    # React frontend
-  server/    # Node.js backend
-```
+1. Register a new account or log in.
+2. Enter a text prompt to generate AI-based images.
+3. Use available credits to create images.
+4. Purchase additional credits through Razorpay when required.
+
+## API and Services Used
+
+* **ClipDrop API** for AI image generation
+* **Razorpay** for secure payment processing
+* **MongoDB** for database management
+* **JWT Authentication** for secure user sessions
 
 ## Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+Contributions are welcome. If you would like to improve the project, please fork the repository and submit a pull request.
+
+For major changes or feature requests, please open an issue to discuss the proposed modifications.
 
 ## License
-[MIT](LICENSE)
+
+This project is licensed under the MIT License.
 
 ---
-## Live link 
-https://imagify-frontend-57j7.onrender.com/
-**Made with ❤️ for creativity!** 
+
+Developed to simplify AI-powered image generation and provide an accessible creative platform.
