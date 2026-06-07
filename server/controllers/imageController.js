@@ -9,18 +9,27 @@ export const generateImage = async (req, res) => {
 
     const user = await userModel.findById(userId);
 
-    if (!user || !prompt) {
-      return res.json({ success: false, message: "Missing Details" });
-    }
+      if (!prompt) {
+        return res.status(400).json({ success: false, message: "Missing Details" });
+      }
 
-    if (user.creditBalance <= 0) {
-      return res.json({
-        success: false,
-        message: "NO Credit Balance",
-        creditBalance: user.creditBalance,
-      });
-    }
+      // Atomically decrement one credit if available to avoid race conditions
+      let reserved = false;
+      const updatedUser = await userModel.findOneAndUpdate(
+        { _id: userId, creditBalance: { $gt: 0 } },
+        { $inc: { creditBalance: -1 } },
+        { new: true }
+      );
 
+      if (!updatedUser) {
+        return res.status(402).json({
+          success: false,
+          message: "NO Credit Balance",
+          creditBalance: user ? user.creditBalance : 0,
+        });
+      }
+      // flag that we've reserved a credit so we can refund on failure
+      reserved = true;
     const formData = new FormData();
     formData.append("prompt", prompt);
 
@@ -39,18 +48,23 @@ export const generateImage = async (req, res) => {
     const base64Image = Buffer.from(data, "binary").toString("base64");
     const resultImage = `data:image/png;base64,${base64Image}`;
 
-    await userModel.findByIdAndUpdate(user._id, {
-      creditBalance: user.creditBalance - 1,
-    });
-
     res.json({
       success: true,
       message: "Image generated",
-      creditBalance: user.creditBalance - 1,
+      creditBalance: updatedUser.creditBalance,
       resultImage,
     });
   } catch (error) {
     console.log(error.message);
-    res.json({ success: false, message: error.message });
+    // If we reserved a credit but the external API failed, refund it
+    try {
+      if (reserved) {
+        await userModel.findByIdAndUpdate(req.userId, { $inc: { creditBalance: 1 } });
+      }
+    } catch (e) {
+      console.error("Failed to refund credit after error:", e.message);
+    }
+
+    res.status(500).json({ success: false, message: error.message });
   }
 };

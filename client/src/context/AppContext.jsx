@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 // eslint-disable-next-line react-refresh/only-export-components
 export const AppContext = createContext();
 
-// Context Provider
+
 const AppContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
@@ -16,7 +16,7 @@ const AppContextProvider = (props) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
 
-  // Load user and credit info
+  
   const loadCreditData = async () => {
     try {
       const latestToken = localStorage.getItem("token");
@@ -36,7 +36,7 @@ const AppContextProvider = (props) => {
     }
   };
 
-  // Generate image and update credit
+  
   const generateImage = async (prompt) => {
     try {
       const { data } = await axios.post(
@@ -65,19 +65,16 @@ const AppContextProvider = (props) => {
       toast.error(error.response?.data?.message || error.message);
     }
 
-    return null; // Return null on failure
+    return null; 
   };
 
-  // Logout
+  
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
     setUser(null);
   };
 
-  
-
-  // Load data if token exists
   useEffect(() => {
     if (token) {
       loadCreditData();
@@ -85,7 +82,7 @@ const AppContextProvider = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
-  // Context value
+  
   const value = {
     user,
     setUser,
